@@ -31,6 +31,7 @@ class Snake():
     #         snake_lines.append((start, end))
     #     return snake_lines
 
+    # stores turning operation temporarily (only the last directional key pressed will count)
     def to_turn(self, direction):
         self.next_direction = np.array(direction)
 
@@ -45,6 +46,7 @@ class Snake():
     def walk(self, apple):
         self.turn()
         to_walk = self.path[-1] + self.direction
+        # 是否会撞墙
         if self.will_hit(to_walk):
             self.alive = False
             return False

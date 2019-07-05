@@ -4,6 +4,7 @@ from settings import *
 
 
 class GameDisplay():
+    # draw the rectangular border of game area
     @staticmethod
     def draw_boarder(screen):
         pygame.draw.line(screen, BORDER_COLOR, BOARD_LEFT_TOP,
@@ -15,12 +16,14 @@ class GameDisplay():
         pygame.draw.line(screen, BORDER_COLOR, BOARD_RIGHT_TOP,
                          BOARD_RIGHT_BOTTOM, BORDER_WIDTH)
 
+    # draw a single cell on screen
     @staticmethod
     def draw_cell(screen, color, pos):
         pos = (BOARD_LEFT + pos[0] * CELL_WIDTH,
                BOARD_TOP + pos[1] * CELL_WIDTH)
         pygame.draw.rect(screen, color, (pos, (CELL_WIDTH, CELL_WIDTH)))
 
+    # draw a snake on screen
     @staticmethod
     def draw_snake(screen, snake, color=SNAKE_COLOR):
         for pos in snake.path:
@@ -28,12 +31,14 @@ class GameDisplay():
         GameDisplay.draw_apple(screen, snake.path[-1],
                                color=SNAKE_HEAD_COLOR, radius=SNAKE_HEAD_RADIUS)
 
+    # draw a circle on screen
     @staticmethod
     def draw_apple(screen, apple, color=APPLE_COLOR, radius=APPLE_RADIUS, width=0):
         pos = (BOARD_LEFT + apple[0] * CELL_WIDTH + CELL_WIDTH // 2,
                BOARD_TOP + apple[1] * CELL_WIDTH + CELL_WIDTH // 2)
         pygame.draw.circle(screen, color, pos, radius, width)
 
+    # draw the whole game area
     @staticmethod
     def draw_game_area(screen, game_state, game_resource):
         GameDisplay.draw_boarder(screen)

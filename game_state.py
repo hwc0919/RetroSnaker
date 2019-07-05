@@ -13,13 +13,15 @@ class GameState():
         self.snake = Snake()
         self.apple = None
         self.apple_eaten = True
-        self.intervel = SNAKE_SPEED
+        self.interval = SNAKE_SPEED
         self.game_timer = None
         self.active = False
 
-    def set_timer(self, intervel):
-        self.game_timer = pygame.time.set_timer(pygame.USEREVENT, intervel)
+    # set a timer that triggers USEREVENT every interval time
+    def set_timer(self, interval):
+        self.game_timer = pygame.time.set_timer(pygame.USEREVENT, interval)
 
+    # generate an apple
     def gen_apple(self):
         i = random.randrange(BOARD_WIDTH)
         j = random.randrange(BOARD_HEIGHT)
@@ -29,15 +31,17 @@ class GameState():
         self.apple = (i, j)
         self.apple_eaten = False
 
+    # reset everything and start game
     def start_game(self):
         self.round += 1
         self.snake.__init__()
         self.apple = None
         self.apple_eaten = True
-        self.intervel = SNAKE_SPEED
-        self.game_timer = self.set_timer(self.intervel)
+        self.interval = SNAKE_SPEED
+        self.game_timer = self.set_timer(self.interval)
         self.active = True
 
+    # stop the timer and end the game
     def end_game(self):
         self.active = False
         self.set_timer(0)

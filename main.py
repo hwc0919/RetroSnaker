@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# author: Nitromelon on fire
-# date: 2019.05.25
-# version: 0.0.1
+# author: Nitromelon
+# date: 2019.07.05
+# version: 0.0.2
 
 import pygame
 
@@ -20,12 +20,18 @@ def main():
     game_state = GameState(screen)
 
     while True:
+        # draw background
         screen.fill(BG_COLOR)
+        # collect events
         events = pygame.event.get()
+        # alive or not
         if not game_state.snake.alive:
             game_state.end_game()
+        # apply events
         check_events(events, game_state, game_resource)
+        # draw game area
         GameDisplay.draw_game_area(screen, game_state, game_resource)
+        # render the screen
         pygame.display.flip()
 
 

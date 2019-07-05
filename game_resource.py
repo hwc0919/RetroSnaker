@@ -7,6 +7,7 @@ class GameResource():
     def __init__(self):
         self.load_text()
 
+    # preload text surface
     def load_text(self):
         welcome_font = pygame.font.Font(None, 40)
         prompt_font = pygame.font.Font(None, 20)
